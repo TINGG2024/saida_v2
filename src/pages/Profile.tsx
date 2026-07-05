@@ -324,6 +324,7 @@ export default function Profile() {
             layout="vertical"
             initialValues={initialValues}
             onFinish={handleSave}
+            disabled={!isEditing}
           >
             <Form.Item label="账号（用户名）" labelCol={{ style: { color: '#F1F5F9', fontWeight: 500 } }}>
               <Input 
@@ -340,7 +341,6 @@ export default function Profile() {
               label="昵称"
               rules={[{ required: true, message: '请输入昵称' }]}
               labelCol={{ style: { color: '#F1F5F9', fontWeight: 500 } }}
-              disabled={!isEditing}
             >
               <Input placeholder="请输入昵称" style={{ borderRadius: 8, background: 'rgba(15, 23, 42, 0.8)', borderColor: 'rgba(148, 163, 184, 0.3)', color: '#FFFFFF' }} />
             </Form.Item>
@@ -350,7 +350,6 @@ export default function Profile() {
               label="专业/领域"
               help="可选，专业信息将作为技能标签参与匹配"
               labelCol={{ style: { color: '#F1F5F9', fontWeight: 500 } }}
-              disabled={!isEditing}
             >
               <Input placeholder="请输入专业/领域，如：计算机科学" style={{ borderRadius: 8, background: 'rgba(15, 23, 42, 0.8)', borderColor: 'rgba(148, 163, 184, 0.3)', color: '#FFFFFF' }} />
             </Form.Item>
@@ -360,7 +359,6 @@ export default function Profile() {
               label="角色"
               rules={[{ required: true, message: '请选择角色' }]}
               labelCol={{ style: { color: '#F1F5F9', fontWeight: 500 } }}
-              disabled={!isEditing}
             >
               <Select placeholder="请选择角色" style={{ borderRadius: 8, background: 'rgba(15, 23, 42, 0.8)', borderColor: 'rgba(148, 163, 184, 0.3)', color: '#FFFFFF' }}>
                 <Option value="队长" style={{ color: '#1E293B' }}>队长</Option>
@@ -372,7 +370,6 @@ export default function Profile() {
               name="bio"
               label="个人简介"
               labelCol={{ style: { color: '#F1F5F9', fontWeight: 500 } }}
-              disabled={!isEditing}
             >
               <TextArea rows={3} placeholder="请输入个人简介" style={{ borderRadius: 8, background: 'rgba(15, 23, 42, 0.8)', borderColor: 'rgba(148, 163, 184, 0.3)', color: '#FFFFFF' }} />
             </Form.Item>
@@ -382,7 +379,6 @@ export default function Profile() {
               label="技能"
               help="多个技能用逗号分隔，如：React, Python, UI设计"
               labelCol={{ style: { color: '#F1F5F9', fontWeight: 500 } }}
-              disabled={!isEditing}
             >
               <Input placeholder="React, Python, UI设计" style={{ borderRadius: 8, background: 'rgba(15, 23, 42, 0.8)', borderColor: 'rgba(148, 163, 184, 0.3)', color: '#FFFFFF' }} />
             </Form.Item>
@@ -401,7 +397,6 @@ export default function Profile() {
                           {...restField}
                           name={[name, 'competition']}
                           rules={[{ required: true, message: '请输入比赛名称' }]}
-                          disabled={!isEditing}
                         >
                           <Input placeholder="比赛名称" style={{ width: 200, borderRadius: 8, background: 'rgba(15, 23, 42, 0.8)', borderColor: 'rgba(148, 163, 184, 0.3)', color: '#FFFFFF' }} />
                         </Form.Item>
@@ -409,7 +404,6 @@ export default function Profile() {
                           {...restField}
                           name={[name, 'level']}
                           rules={[{ required: true, message: '请选择奖项等级' }]}
-                          disabled={!isEditing}
                         >
                           <Select placeholder="奖项等级" style={{ width: 150, borderRadius: 8, background: 'rgba(15, 23, 42, 0.8)', borderColor: 'rgba(148, 163, 184, 0.3)', color: '#FFFFFF' }}>
                             <Option value="国家级">国家级</Option>
@@ -455,7 +449,6 @@ export default function Profile() {
               <Form.Item
                 name="experiences"
                 help="多个经历用逗号分隔"
-                disabled={!isEditing}
               >
                 <TextArea rows={3} placeholder="2024挑战杯省赛一等奖, 2023互联网+校赛银奖" style={{ borderRadius: 8, background: 'rgba(15, 23, 42, 0.8)', borderColor: 'rgba(148, 163, 184, 0.3)', color: '#FFFFFF' }} />
               </Form.Item>

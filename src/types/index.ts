@@ -62,6 +62,8 @@ export interface Project {
   coverImage?: string;
   endDate?: string;
   tasks?: Task[];
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 // 消息类型和状态

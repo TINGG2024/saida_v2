@@ -93,6 +93,7 @@ type Action =
   | { type: 'UPDATE_TASK'; payload: { projectId: string; task: Task } }
   | { type: 'DELETE_TASK'; payload: { projectId: string; taskId: string } }
   | { type: 'SEND_MESSAGE'; payload: Message }
+  | { type: 'UPDATE_MESSAGE_ID'; payload: { oldId: string; newId: string } }
   | { type: 'UPDATE_MESSAGE_STATUS'; payload: { id: string; status: MessageStatus } }
   | { type: 'MARK_MESSAGE_NOTIFIED'; payload: string }
   | { type: 'UPDATE_USER'; payload: User }

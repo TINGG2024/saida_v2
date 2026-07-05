@@ -1027,7 +1027,7 @@ export default function Home() {
                 {currentUser.seekerReq && currentUser.seekerReq.active && (
                   <Button
                     icon={<EditOutlined />}
-                    onClick={() => setIsModalVisible(true)}
+                    onClick={() => setIsSeekerModalVisible(true)}
                     style={{ borderRadius: 10, fontWeight: 500 }}
                   >
                     修改需求
@@ -1036,7 +1036,7 @@ export default function Home() {
                 {!currentUser.seekingTeam && (
                   <Button
                     type="primary"
-                    onClick={() => setIsModalVisible(true)}
+                    onClick={() => setIsSeekerModalVisible(true)}
                     style={{
                       borderRadius: 10,
                       fontWeight: 600,
