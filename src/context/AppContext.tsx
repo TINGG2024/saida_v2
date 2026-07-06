@@ -586,6 +586,34 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
     dispatch({ type: 'REGISTER', payload: newUser });
 
+    try {
+      const { error } = await supabase.from('users').insert({
+        id: newUser.id,
+        username: newUser.username,
+        nickname: newUser.nickname,
+        password: newUser.password,
+        role: newUser.role,
+        skills: newUser.skills,
+        major: newUser.major,
+        awards: newUser.awards,
+        experiences: newUser.experiences,
+        seeking_team: newUser.seekingTeam,
+        bio: newUser.bio,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      });
+
+      if (error) {
+        console.error('Error registering user in Supabase:', error.message);
+        throw new Error(`注册失败: ${error.message}`);
+      }
+
+      console.log('User registered in Supabase successfully');
+    } catch (error) {
+      console.error('Error registering user:', error);
+      throw error;
+    }
+
     const token = generateToken(newUser.id);
     localStorage.setItem(TOKEN_KEY, token);
     localStorage.setItem(USERID_KEY, newUser.id);

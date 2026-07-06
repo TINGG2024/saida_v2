@@ -266,29 +266,20 @@ export default function RegisterPage() {
             <Form.Item
               name="username"
               label={
-                <span style={{ color: 'rgba(255,255,255,0.75)', fontWeight: 500, fontSize: 13 }}>账号</span>
+                <span style={{ color: 'rgba(255,255,255,0.75)', fontWeight: 500, fontSize: 13 }}>账号（手机号）</span>
               }
               rules={[
-                { required: true, message: '请输入账号！' },
+                { required: true, message: '请输入手机号！' },
                 {
-                  pattern: /^[a-zA-Z0-9_]{4,16}$/,
-                  message:
-                    '账号需为 4-16 位字母、数字或下划线，且不能纯数字！',
-                },
-                {
-                  validator: (_, value) => {
-                    if (value && /^\d+$/.test(value)) {
-                      return Promise.reject(new Error('账号不能是纯数字！'));
-                    }
-                    return Promise.resolve();
-                  },
+                  pattern: /^1[3-9]\d{9}$/,
+                  message: '请输入正确的手机号格式！',
                 },
               ]}
-              help="4-16 位字母、数字或下划线，不能纯数字"
+              help="请输入11位手机号"
             >
               <Input
                 prefix={<IdcardOutlined style={{ color: 'rgba(255,255,255,0.4)' }} />}
-                placeholder="如 myuser123"
+                placeholder="请输入11位手机号"
                 style={inputStyle}
               />
             </Form.Item>

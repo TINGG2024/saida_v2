@@ -506,7 +506,7 @@ function RoleSelection({
 
 /* ── Main Home component ──────────────────────────────────── */
 export default function Home() {
-  const { currentUser, projects, users, messages, updateUser, sendMessage, addProject } = useApp();
+  const { currentUser, selectedRole, projects, users, messages, updateUser, sendMessage, addProject } = useApp();
   const navigate = useNavigate();
   const [isSeekerModalVisible, setIsSeekerModalVisible] = useState(false);
   const [isCreateProjectModalVisible, setIsCreateProjectModalVisible] = useState(false);
@@ -642,11 +642,11 @@ export default function Home() {
   };
 
   /* ── Role not yet chosen ────────────────────────────────── */
-  if (!currentUser.role) {
+  if (!selectedRole) {
     return <RoleSelection currentUser={currentUser} updateUser={updateUser} navigate={navigate} />;
   }
 
-  const isCaptain = currentUser.role === '队长';
+  const isCaptain = selectedRole === '队长';
   const myProjects = isCaptain
     ? projects.filter((p) => p.captainId === currentUser.id)
     : projects.filter((p) => (p.teamMembers || []).includes(currentUser.id));
