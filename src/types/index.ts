@@ -29,6 +29,7 @@ export interface Task {
 export interface User {
   id: string;
   phone: string;
+  username?: string;
   password: string;
   nickname: string;
   email?: string;
