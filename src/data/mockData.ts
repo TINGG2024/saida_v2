@@ -5,6 +5,7 @@ import { PRECOMPUTED_HASHES } from '../utils/crypto';
 export const INITIAL_USERS: User[] = [
   {
     id: 'user1',
+    phone: '13800138001',
     username: 'zhangsan',
     nickname: '张三',
     password: PRECOMPUTED_HASHES['123456'], // 原密码 123456
@@ -21,6 +22,7 @@ export const INITIAL_USERS: User[] = [
   },
   {
     id: 'user2',
+    phone: '13800138002',
     username: 'lisi',
     nickname: '李四',
     password: PRECOMPUTED_HASHES['123456'],
@@ -36,6 +38,7 @@ export const INITIAL_USERS: User[] = [
   },
   {
     id: 'user3',
+    phone: '13800138003',
     username: 'wangwu',
     nickname: '王五',
     password: PRECOMPUTED_HASHES['123456'],
@@ -57,6 +60,7 @@ export const INITIAL_USERS: User[] = [
   },
   {
     id: 'user4',
+    phone: '13800138004',
     username: 'zhaoliu',
     nickname: '赵六',
     password: PRECOMPUTED_HASHES['123456'],
@@ -72,6 +76,7 @@ export const INITIAL_USERS: User[] = [
   },
   {
     id: 'user5',
+    phone: '13800138005',
     username: 'sunqi',
     nickname: '孙七',
     password: PRECOMPUTED_HASHES['123456'],
@@ -88,6 +93,7 @@ export const INITIAL_USERS: User[] = [
   },
   {
     id: 'user6',
+    phone: '13800138006',
     username: 'zhouba',
     nickname: '周八',
     password: PRECOMPUTED_HASHES['123456'],
@@ -103,6 +109,7 @@ export const INITIAL_USERS: User[] = [
   },
   {
     id: 'admin',
+    phone: '13800138000',
     username: 'admin',
     nickname: '系统管理员',
     password: PRECOMPUTED_HASHES['admin123'], // 原密码 admin123
