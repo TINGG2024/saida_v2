@@ -1396,6 +1396,133 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <Modal
+        title="创建新项目"
+        open={isCreateProjectModalVisible}
+        onCancel={() => {
+          setIsCreateProjectModalVisible(false);
+          setCoverImage(null);
+          projectForm.resetFields();
+        }}
+        footer={null}
+        width={600}
+      >
+        <Form
+          form={projectForm}
+          layout="vertical"
+          onFinish={handleCreateProject}
+        >
+          <Form.Item
+            name="title"
+            label="项目标题"
+            rules={[{ required: true, message: '请输入项目标题' }]}
+          >
+            <Input placeholder="请输入项目标题" style={{ borderRadius: 8 }} />
+          </Form.Item>
+
+          <Form.Item
+            name="description"
+            label="项目描述"
+            rules={[{ required: true, message: '请输入项目描述' }]}
+          >
+            <TextArea rows={4} placeholder="请输入项目描述" style={{ borderRadius: 8 }} />
+          </Form.Item>
+
+          <Form.Item
+            name="competitionType"
+            label="比赛类型"
+            rules={[{ required: true, message: '请选择比赛类型' }]}
+          >
+            <Select placeholder="请选择比赛类型" style={{ borderRadius: 8 }}>
+              <Option value="挑战杯">挑战杯</Option>
+              <Option value="互联网+">互联网+</Option>
+              <Option value="创青春">创青春</Option>
+              <Option value="数学建模">数学建模</Option>
+              <Option value="程序设计竞赛">程序设计竞赛</Option>
+              <Option value="其他">其他</Option>
+            </Select>
+          </Form.Item>
+
+          <Form.Item
+            name="requiredSkills"
+            label="所需技能"
+            help="多个技能用逗号分隔，如：React, Python, UI设计"
+            rules={[{ required: true, message: '请输入所需技能' }]}
+          >
+            <Input placeholder="React, Python, UI设计" style={{ borderRadius: 8 }} />
+          </Form.Item>
+
+          <Form.Item
+            name="requiredMembers"
+            label="所需人数"
+            rules={[{ required: true, message: '请输入所需人数' }]}
+          >
+            <Select placeholder="请选择所需人数" style={{ borderRadius: 8 }}>
+              <Option value={2}>2人</Option>
+              <Option value={3}>3人</Option>
+              <Option value={4}>4人</Option>
+              <Option value={5}>5人</Option>
+              <Option value={6}>6人</Option>
+              <Option value={7}>7人及以上</Option>
+            </Select>
+          </Form.Item>
+
+          <Form.Item label="封面图片">
+            <div
+              style={{
+                width: '100%',
+                height: 120,
+                borderRadius: 8,
+                border: '2px dashed #D9D9D9',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                background: coverImage ? undefined : '#F5F5F5',
+              }}
+              onClick={() => document.getElementById('cover-image-upload')?.click()}
+            >
+              {coverImage ? (
+                <img
+                  src={coverImage}
+                  alt="封面预览"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }}
+                />
+              ) : (
+                <div style={{ textAlign: 'center', color: '#999' }}>
+                  <CameraOutlined style={{ fontSize: 24, marginBottom: 8 }} />
+                  <div>点击上传封面图片</div>
+                </div>
+              )}
+            </div>
+            <input
+              id="cover-image-upload"
+              type="file"
+              accept="image/*"
+              onChange={handleCoverImageChange}
+              className="hidden"
+            />
+          </Form.Item>
+
+          <Form.Item>
+            <Space>
+              <Button type="primary" htmlType="submit" style={{ borderRadius: 8, fontWeight: 600 }}>
+                创建项目
+              </Button>
+              <Button
+                onClick={() => {
+                  setIsCreateProjectModalVisible(false);
+                  setCoverImage(null);
+                  projectForm.resetFields();
+                }}
+              >
+                取消
+              </Button>
+            </Space>
+          </Form.Item>
+        </Form>
+      </Modal>
     </div>
   );
 }
