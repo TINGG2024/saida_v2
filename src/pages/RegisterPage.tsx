@@ -40,7 +40,7 @@ export default function RegisterPage() {
   }
 
   const onFinish = async (values: {
-    username: string;
+    phone: string;
     nickname: string;
     password: string;
     confirmPassword: string;
@@ -52,7 +52,7 @@ export default function RegisterPage() {
 
     setLoading(true);
     try {
-      const user = await register(values.username, values.nickname, values.password);
+      const user = await register(values.phone, values.nickname, values.password);
       if (user) {
         antdMessage.success('注册成功！请选择您的身份。');
         setTimeout(() => {
@@ -264,9 +264,9 @@ export default function RegisterPage() {
             size="large"
           >
             <Form.Item
-              name="username"
+              name="phone"
               label={
-                <span style={{ color: 'rgba(255,255,255,0.75)', fontWeight: 500, fontSize: 13 }}>账号（手机号）</span>
+                <span style={{ color: 'rgba(255,255,255,0.75)', fontWeight: 500, fontSize: 13 }}>手机号</span>
               }
               rules={[
                 { required: true, message: '请输入手机号！' },

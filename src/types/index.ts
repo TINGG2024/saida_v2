@@ -28,11 +28,10 @@ export interface Task {
 // 用户接口
 export interface User {
   id: string;
-  username: string;
+  phone: string;
   password: string;
   nickname: string;
   email?: string;
-  phone?: string;
   avatar?: string;
   major?: string;
   skills?: string[];

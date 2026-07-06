@@ -540,11 +540,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
       const user: User = {
         id: users.id,
-        username: users.username || '',
+        phone: users.phone || '',
         password: users.password || '',
         nickname: users.nickname || '',
         email: users.email,
-        phone: users.phone || '',
         avatar: users.avatar,
         major: users.major,
         skills: users.skills || [],
@@ -565,14 +564,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const register = async (username: string, nickname: string, password: string, role: '队长' | '队员' | 'both' = 'both'): Promise<User | null> => {
-    const existingUser = state.users.find(u => u.username === username);
+  const register = async (phone: string, nickname: string, password: string, role: '队长' | '队员' | 'both' = 'both'): Promise<User | null> => {
+    const existingUser = state.users.find(u => u.phone === phone);
     if (existingUser) return null;
 
     const hashedPassword = await hashPassword(password);
     const newUser: User = {
       id: 'user_' + Date.now(),
-      username,
+      phone,
       nickname,
       password: hashedPassword,
       role,
@@ -587,9 +586,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     dispatch({ type: 'REGISTER', payload: newUser });
 
     try {
-      const { error } = await supabase.from('users').insert({
-        id: newUser.id,
-        username: newUser.username,
+      const { data, error } = await supabase.from('users').insert({
+        phone: newUser.phone,
         nickname: newUser.nickname,
         password: newUser.password,
         role: newUser.role,
@@ -598,14 +596,16 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         awards: newUser.awards,
         experiences: newUser.experiences,
         seeking_team: newUser.seekingTeam,
-        bio: newUser.bio,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-      });
+        bio: newUser.bio
+      }).select().single();
 
       if (error) {
         console.error('Error registering user in Supabase:', error.message);
         throw new Error(`注册失败: ${error.message}`);
+      }
+
+      if (data) {
+        newUser.id = data.id;
       }
 
       console.log('User registered in Supabase successfully');
