@@ -31,7 +31,7 @@ const otherBubbleStyle: React.CSSProperties = {
 };
 
 export default function ChatPage() {
-  const { userId, projectId } = useParams<{ userId: string; projectId: string }>();
+  const { projectId, userId } = useParams<{ projectId: string; userId: string }>();
   const navigate = useNavigate();
   const { currentUser, users, messages, sendMessage, projects } = useApp();
   const [newMessage, setNewMessage] = useState('');
